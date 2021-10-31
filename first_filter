@@ -1,0 +1,24 @@
+input {
+  file {
+    path => "/Users/outside/Documents/GitHub/Logstash/logsample.log"
+    start_position => "beginning"
+  }
+}
+
+filter {
+  grok { "message" => ['%{TIMESTAMP_ISO8601:timestamp} %{HOST:hostname} %{WORD:AlertType}'] 
+  }
+
+}   
+
+output {
+  file { 
+    path => "/Users/outside/Documents/GitHub/Logstash/output.json"
+  }
+stdout {
+  
+}
+}
+
+
+ 
