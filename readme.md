@@ -16,7 +16,7 @@ I used many of these resources to get to the end product.
 
 ## Steps taken to get to the final 
 #### 1. Creating the config file
-I started looking at many of the above resources to get going. I first installed logstash on my MAC using brew. I got the understand that I needed to create a config file with input, filter and output as the foundation of my config file. 
+I started looking at many of the above resources to get going. I first installed logstash on my MAC using brew. I got the understanding that I needed to create a config file with input, filter and output as the foundation of my config file. 
 
 ```CONF
 input{}
@@ -154,4 +154,5 @@ output {
       "syslog5424_ts" => "2016-12-25T09:03:52.754646-06:00"
 }
 ```
+## Screenshot of output
 ![Output](https://github.com/cmoxley1/logstash/blob/main/output.jpg)
