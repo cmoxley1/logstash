@@ -154,4 +154,4 @@ output {
       "syslog5424_ts" => "2016-12-25T09:03:52.754646-06:00"
 }
 ```
-!(output.jpg)
+![Output](https://github.com/cmoxley1/logstash/blob/main/output.jpg)
