@@ -50,21 +50,21 @@ filter {
     }
 }
 ```
-I used  https://grokdebug.herokuapp.com/ to help me debug my GROK filter. This is where I made mistakes that took me awhile to figure out. At the time I did not know it was typos in my code plus the GROK filter that was wrong. Just because the GROK debugger will let you do something does not mean logstash will let you while actual running the code. This made me think it was a issue I was having on my MAC, so I swithced to my Windows machine which introduced issues like using / in the path variable and not \ . 
+I used  https://grokdebug.herokuapp.com/ to help me debug my GROK filter. This is where I made mistakes that took me awhile to figure out. At the time I did not know it was typos in my code plus the GROK filter that was wrong. Just because the GROK debugger will let you do something does not mean logstash will let you while actual running the code. This made me think it was a issue I was having on my MAC, so I switched to my Windows machine which introduced issues like using / in the path variable and not \ . 
 
 Here is my first attempt at my GROK filter 
-```
+```CONF
 {TIMESTAMP_ISO8601:timestamp} %{DATA:UNWANTED} %{DATA:UNWANTED} \- \- alertname=\"%{QS:description}\" 
 computername=\"%{QS:hostname}\"  computerip=\"%{IP:source_ip}\" severity=%{QS:severity}" }
  #mutate {
 ```
 I later learned that there are better options to use and the GROK does not like escapes. I beleive I saw them in dissect examples. (I could be wrong.) 
 
-Also using quotedstring introduced the problem of removing quotes I did not want. 
+Also using QUOTEDSTRING(QS) introduced the problem of removing quotes I did not know how to remove.
 ```
 %{QS:test}
 ```
-This one seemed to do the trick with seleeting alertname. 
+This one seemed to do the trick with selecting alertname. 
 ```
 %{DATA:test}
 ```
