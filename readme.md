@@ -156,3 +156,17 @@ output {
 ```
 ## Screenshot of output
 ![Output](https://github.com/cmoxley1/logstash/blob/main/output.jpg)
+
+## Using mutate to remove fields that are not needed
+```json 
+{
+           "severity" => "High",
+          "source_ip" => "216.58.194.142",
+     "syslog5424_app" => "antivirus",
+      "syslog5424_ts" => "2016-12-25T09:03:52.754646-06:00",
+        "description" => "Virus Found",
+           "hostname" => "contosopc42",
+    "syslog5424_host" => "contosohost1"
+}
+
+```
