@@ -14,7 +14,7 @@ I used many of these resources to get to the end product.
 *  **GOOGLE**
    
 
-## Steps taken to get to the final 
+## Steps taken to get to the final config
 #### 1. Creating the config file
 I started looking at many of the above resources to get going. I first installed logstash on my MAC using brew. I got the understanding that I needed to create a config file with input, filter and output as the foundation of my config file. 
 
@@ -24,7 +24,7 @@ filter {}}
 output {}
 ```
 #### 2. Ingesting the log data
-Based on the requirements of the skills test.  I needed to input provided security log data via and Logstash input plugin. I saw a lot of examples using the file plugin. This is the direction I went.
+Based on the requirements of the skills test, I needed to input provided security log data via a Logstash input plugin. I saw a lot of examples using the file plugin. This is the direction I went.
 ```CONF
 input {
     file {
@@ -41,7 +41,7 @@ output{
     }
 }
 ```
-#### 4. Filter making steps. Where the first mistakes where made. 
+#### 4. Filter plugin steps. Where the first mistakes were made. 
 This is where I started my filter plugin 
 ```CONF
 filter {
@@ -50,15 +50,15 @@ filter {
     }
 }
 ```
-I used  https://grokdebug.herokuapp.com/ to help me debug my GROK filter. This is where I made mistakes that took me awhile to figure out. At the time I did not know it was typos in my code plus the GROK filter that was wrong. Just because the GROK debugger will let you do something does not mean logstash will let you while actual running the code. This made me think it was a issue I was having on my MAC, so I switched to my Windows machine which introduced issues like using / in the path variable and not \ . 
+I used  https://grokdebug.herokuapp.com/ to help me debug my GROK filter. This is where I made mistakes that took me a while to figure out. At the time I did not know it was typos in my code plus the GROK filter that was wrong. Just because the GROK debugger will let you do something does not mean logstash will run the code. This made me think it was an issue I was having on my MAC, so I switched to my Windows machine, which introduced issues like using / in the path variable and not \ . 
 
-Here is my first attempt at my GROK filter 
+Here is my first attempt at a GROK filter 
 ```CONF
 {TIMESTAMP_ISO8601:timestamp} %{DATA:UNWANTED} %{DATA:UNWANTED} \- \- alertname=\"%{QS:description}\" 
 computername=\"%{QS:hostname}\"  computerip=\"%{IP:source_ip}\" severity=%{QS:severity}" }
  #mutate {
 ```
-I later learned that there are better options to use and the GROK does not like escapes. I beleive I saw them in dissect examples. (I could be wrong.) 
+I later learned that there are better options to use and the GROK does not like escapes. I believe I saw them in dissect examples, although I could be wrong.
 
 Also using QUOTEDSTRING(QS) introduced the problem of removing quotes I did not know how to remove.
 ```
@@ -69,7 +69,7 @@ This one seemed to do the trick with selecting alertname.
 %{DATA:test}
 ```
 
-Another issue I had was my output had a GROKFAILURE output with the json. I figured out that I had a few empty lines in the logsample.log file causing thie repsponse.
+Another issue I had was my output had a GROKFAILURE in the Logstash output. I figured out that I had a few empty lines in the logsample.log file causing this error.
 
 ## Final results
 ### MAC
