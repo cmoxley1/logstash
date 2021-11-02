@@ -157,7 +157,7 @@ output {
 ## Screenshot of output
 ![Output](https://github.com/cmoxley1/logstash/blob/main/output.jpg)
 
-## Using mutate to remove fields that are not needed
+## Using mutate filter to remove fields that are not needed
 ```json 
 {
            "severity" => "High",
